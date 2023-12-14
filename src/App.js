@@ -1,5 +1,5 @@
 import "./App.css";
-import {  Routes, Route, Link,useNavigate } from "react-router-dom";
+import {  Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Login from "./pages/Login";
@@ -10,13 +10,13 @@ import { auth } from "./firebase-config";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const signUserOut = () => {
     signOut(auth).then(() => {
       localStorage.clear();
       setIsAuth(false);
-      navigate("/login")
+      // navigate("/")
       // window.location.pathname = "/login";
     });
   };
