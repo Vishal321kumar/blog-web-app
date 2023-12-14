@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes,useNavigate, Route, Link } from "react-router-dom";
+import {  Routes, Route, Link,useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Login from "./pages/Login";
@@ -9,21 +9,21 @@ import { auth } from "./firebase-config";
 
 
 function App() {
-  const navigate=useNavigate()
   const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
+  const navigate = useNavigate();
 
   const signUserOut = () => {
     signOut(auth).then(() => {
       localStorage.clear();
       setIsAuth(false);
-      navigate('/login')
+      navigate("/login")
       // window.location.pathname = "/login";
     });
   };
 
   return (
     <div className="App">
-      <Router>
+
         <nav>
           <Link to="">Home</Link>
           {!isAuth ? (
@@ -41,7 +41,7 @@ function App() {
           <Route path="/CreatePost" element={<CreatePost isAuth={isAuth} />} />
           <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
         </Routes>
-      </Router>
+
     </div>
   );
 }
